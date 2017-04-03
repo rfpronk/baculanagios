@@ -4,13 +4,19 @@
 
 If needed, download the [check_service.sh](https://github.com/jonschipp/nagios-plugins/blob/master/check_service.sh) Nagios plugin and place it in `/usr/lib/nagios/plugins/`.
 
+Copy the Nagios NRPE configurion needed.
+```
+cp nrpe.d/bacula_services.cfg /etc/nagios/nrpe.d/
+service nagios-nrpe-server restart
+```
+
 Allow nagios user to perform service check as root. 
 Add following line to `/etc/sudoers`:
 ```
 nagios ALL=(root) NOPASSWD:/usr/lib/nagios/plugins/check_service.sh
 ```
 
-Now add the configuration found in `nagios.d/service.cfg` to your Nagios configuration.
+Now add the configuration found in `nagios.d/service.cfg` to your Nagios configuration. Of course only add the services needed for that host (fd/sd/director).
 
 ## Jobs
 
@@ -34,6 +40,12 @@ Place script
 Make it executable
 ```
 cp bacula_nagios.py /etc/nagios-plugins/ && chmod +x /etc/nagios-plugins/bacula_nagios.py 
+```
+
+Copy the Nagios NRPE configurion needed.
+```
+cp nrpe.d/bacula_jobs.cfg /etc/nagios/nrpe.d/
+service nagios-nrpe-server restart
 ```
 
 Now add the configuration found in `nagios.d/jobs.cfg` to your Nagios configuration.
