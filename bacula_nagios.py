@@ -60,7 +60,7 @@ for row in Clientlist:
 
 for row in Joblist:
 	clientnameJL = row[0]
-	print(row[0])
+	#print(row[0])
 	clientidJL = row[1]
 	backuptype = row[2]
 	numerrors = row[3]
